@@ -8,31 +8,31 @@
     <body>
         <header th:replace="layout/masterPage :: header"></header>
 
-        <h2>Modificar producto</h2>
-        <a th:href="@{/}">Regresar</a>
+        <h2>[[#{producto.formulario}]]</h2>
+        <a th:href="@{/}">[[#{accion.regresar}]]</a>
         <br/>
         <form th:action="@{/guardar}" method="post" th:object="${producto}">
             <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
             <br/>
-            <label for="nombre">Nombre:</label>
+            <label for="nombre">[[#{producto.nombre}]]:</label>
             <input type="text" name="nombre" th:field="*{nombre}"/>
             <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error de nombre</span>
             <br/>
-            <label for="descripcion">Descripcion</label>
+            <label for="descripcion">[[#{producto.descripcion}]]</label>
             <input type="text" name="descripcion" th:field="*{descripcion}"/>
             <br/>
-            <label for="marca">Marca:</label>
+            <label for="marca">[[#{producto.marca}]]</label>
             <input type="text" name="marca" th:field="*{marca}"/>
             <br/>
-            <label for="stock">Stock: </label>
+            <label for="stock">[[#{producto.stock}]]: </label>
             <input type="text" name="stock" th:field="*{stock}"/>
             <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Error de Stock</span>
             <br/> 
-            <label for="precio">Precio: </label>
+            <label for="precio">[[#{producto.precio}]] </label>
             <input type="text" name="precio" th:field="*{precio}"/>
             <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error de precio</span>
             <br/>
-            <input type="submit" name="guardar" value="Guardar"/>
+            <input type="submit" name="guardar" th:value="#{accion.guardar}"/>
         </form>
         <footer th:replace="layout/masterPage :: footer"></footer>
 

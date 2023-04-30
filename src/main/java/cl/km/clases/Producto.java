@@ -23,7 +23,6 @@ public class Producto implements Serializable {
     private String descripcion;
     private String marca;
     @NotNull // valida numericos
-    @Min(1)
     private Integer stock;
     @NotNull
     @Min(1)

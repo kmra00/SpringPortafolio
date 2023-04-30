@@ -7,15 +7,18 @@
     </head>
     <body>
         <header th:replace="layout/masterPage :: header"></header>
-        <a th:href="@{/agregar}">Crear Producto</a>
+        <a th:href="@{/agregar}">[[#{producto.crear}]]</a>
         <div th:if="${productos != null and !productos.empty}">
             <table border="1">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Marca</th>
-                    <th>Stock</th>
-                    <th>Precio</th>
+                    <th>[[#{producto.nombre}]]</th>
+                    <th>[[#{producto.descripcion}]]</th>
+                    <th>[[#{producto.marca}]]</th>
+                    <th>[[#{producto.stock}]]</th>
+                    <th>[[#{producto.precio}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
+
                 </tr>
                 <tr th:each="producto : ${productos}">
                     <td th:text="${producto.nombre}"> Nombre</td>
@@ -23,14 +26,14 @@
                     <td th:text="${producto.marca}"> marca</td>
                     <td th:text="${producto.stock}"> stock</td>
                     <td th:text="${producto.precio}"> precio</td>
-                    <td><a th:href="@{/editar/} + ${producto.idProducto}" th:text="Editar"/></td>
+                    <td><a th:href="@{/editar/} + ${producto.idProducto}"/>[[#{accion.editar}]]</td>
                     <!-- //eliminacion mediante query param --> 
-                    <td><a th:href="@{/eliminar(idProducto=${producto.idProducto})}" th:text="Eliminar"/></td>
+                    <td><a th:href="@{/eliminar(idProducto=${producto.idProducto})}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>
         <div th:if="${productos == null or productos.empty}">
-            La lista de productos está vacía
+           [[#{producto.lista-vacia}]]
         </div>
         <footer th:replace="layout/masterPage :: footer"></footer>
 
