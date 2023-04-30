@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Inicio</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
         <header th:replace="layout/masterPage :: header"></header>
-        <a th:href="@{/agregar}">[[#{producto.crear}]]</a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}">[[#{producto.crear}]]</a>
         <div th:if="${productos != null and !productos.empty}">
             <table border="1">
                 <tr>
@@ -16,8 +17,8 @@
                     <th>[[#{producto.marca}]]</th>
                     <th>[[#{producto.stock}]]</th>
                     <th>[[#{producto.precio}]]</th>
-                    <th>[[#{accion.editar}]]</th>
-                    <th>[[#{accion.eliminar}]]</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
 
                 </tr>
                 <tr th:each="producto : ${productos}">
@@ -26,9 +27,9 @@
                     <td th:text="${producto.marca}"> marca</td>
                     <td th:text="${producto.stock}"> stock</td>
                     <td th:text="${producto.precio}"> precio</td>
-                    <td><a th:href="@{/editar/} + ${producto.idProducto}"/>[[#{accion.editar}]]</td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${producto.idProducto}"/>[[#{accion.editar}]]</td>
                     <!-- //eliminacion mediante query param --> 
-                    <td><a th:href="@{/eliminar(idProducto=${producto.idProducto})}"/>[[#{accion.eliminar}]]</td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar(idProducto=${producto.idProducto})}"/>[[#{accion.eliminar}]]</td>
                 </tr>
             </table>
         </div>

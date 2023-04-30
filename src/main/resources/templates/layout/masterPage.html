@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org"/>
-<html>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Master Page</title>
         <meta charset="UTF-8"/>
@@ -21,7 +21,8 @@
                 <br/>
                 <span>[[#{plantilla.pie-pagina}]]<a href="https://github.com/kmra00/Portafolio" target="_blank">Portafolio</span>
                 <form method="POST" th:action="@{/logout}">
-                    
+                    <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>-
+                    <b>Roles</b> <span sec:authentication="principal.authorities">Roles</span>-
                   <!-- codigo Js   <a href="#" onclick="this.parentNode.submit()">Logout</a> -->
                     <button type="submit">Cerrar Sesion</button>
                 </form>
