@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Inventatio Productos</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>Inventario de productos</h1>
+        <a th:href="@{/}">Regresar</a>
+        <br/>
+        <form th:action="@{/guardar}" method="post" th:object="${producto}">
+            <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+            <br/>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" th:field="*{nombre}"/>
+<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error de nombre</span>
+            <br/>
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion" th:field="*{descripcion}"/>
+            <br/>
+            <label for="marca">Marca:</label>
+            <input type="text" name="marca" th:field="*{marca}"/>
+            <br/>
+            <label for="stock">Stock: </label>
+            <input type="stock" name="stock" th:field="*{stock}"/>
+            <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Error de Stock</span>
+            <br/> 
+            <label for="precio">Precio: </label>
+            <input type="precio" name="precio" th:field="*{precio}"/>
+            <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error de precio</span>
+            <br/>
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+    </body>
+</html>

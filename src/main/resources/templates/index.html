@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/masterPage :: header"></header>
+        <a th:href="@{/agregar}">Crear Producto</a>
+        <div th:if="${productos != null and !productos.empty}">
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Marca</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                </tr>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.nombre}"> Nombre</td>
+                    <td th:text="${producto.descripcion}"> descripcion</td>
+                    <td th:text="${producto.marca}"> marca</td>
+                    <td th:text="${producto.stock}"> stock</td>
+                    <td th:text="${producto.precio}"> precio</td>
+                    <td><a th:href="@{/editar/} + ${producto.idProducto}" th:text="Editar"/></td>
+                    <!-- //eliminacion mediante query param --> 
+                    <td><a th:href="@{/eliminar(idProducto=${producto.idProducto})}" th:text="Eliminar"/></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${productos == null or productos.empty}">
+            La lista de productos está vacía
+        </div>
+        <footer th:replace="layout/masterPage :: footer"></footer>
+
+    </body>
+</html>
