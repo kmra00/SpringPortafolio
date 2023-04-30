@@ -20,7 +20,11 @@
                 <a th:href="@{/(lang=en)}">ENGLISH</a>
                 <br/>
                 <span>[[#{plantilla.pie-pagina}]]<a href="https://github.com/kmra00/Portafolio" target="_blank">Portafolio</span>
-
+                <form method="POST" th:action="@{/logout}">
+                    
+                  <!-- codigo Js   <a href="#" onclick="this.parentNode.submit()">Logout</a> -->
+                    <button type="submit">Cerrar Sesion</button>
+                </form>
             </div>
         </footer>
     </body>
