@@ -12,7 +12,7 @@
     <artifactId>SpringPortafolio</artifactId>
     <version>1.0</version>
     <name>SpringPortafolio</name>
-    <description>HolaMundo con Spring</description>
+    <description>Portafolio Kmra</description>
 
     <properties>
         <java.version>13</java.version>

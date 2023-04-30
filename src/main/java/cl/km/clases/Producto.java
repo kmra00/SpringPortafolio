@@ -2,6 +2,7 @@ package cl.km.clases;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
@@ -9,10 +10,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "producto")
-public class Producto implements Serializable{
-    
+public class Producto implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProducto;
@@ -22,7 +23,9 @@ public class Producto implements Serializable{
     private String descripcion;
     private String marca;
     @NotNull // valida numericos
-    private int stock;
+    @Min(1)
+    private Integer stock;
     @NotNull
-    private int precio;
+    @Min(1)
+    private Integer precio;
 }

@@ -6,7 +6,9 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <h1>Inventario de productos</h1>
+        <header th:replace="layout/masterPage :: header"></header>
+
+        <h2>Modificar producto</h2>
         <a th:href="@{/}">Regresar</a>
         <br/>
         <form th:action="@{/guardar}" method="post" th:object="${producto}">
@@ -14,7 +16,7 @@
             <br/>
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" th:field="*{nombre}"/>
-<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error de nombre</span>
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error de nombre</span>
             <br/>
             <label for="descripcion">Descripcion</label>
             <input type="text" name="descripcion" th:field="*{descripcion}"/>
@@ -23,14 +25,16 @@
             <input type="text" name="marca" th:field="*{marca}"/>
             <br/>
             <label for="stock">Stock: </label>
-            <input type="stock" name="stock" th:field="*{stock}"/>
+            <input type="text" name="stock" th:field="*{stock}"/>
             <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Error de Stock</span>
             <br/> 
             <label for="precio">Precio: </label>
-            <input type="precio" name="precio" th:field="*{precio}"/>
+            <input type="text" name="precio" th:field="*{precio}"/>
             <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error de precio</span>
             <br/>
             <input type="submit" name="guardar" value="Guardar"/>
         </form>
+        <footer th:replace="layout/masterPage :: footer"></footer>
+
     </body>
 </html>
