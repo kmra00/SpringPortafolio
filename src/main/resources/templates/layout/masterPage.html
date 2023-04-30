@@ -11,10 +11,17 @@
         <header th:fragment="header">
             <h1 th:text="#{plantilla.titulo}">Iventario de </h1>
         </header>
-        
+
         <!<!-- manejo de footer por thymeleaf -->        
         <footer th:fragment="footer">
-            <p>[[#{plantilla.pie-pagina}]]<a href="https://github.com/kmra00/Portafolio" target="_blank">Portafolio</a></p>
+            <div>
+                <br/>
+                <a th:href="@{/(lang=es)}">ESPAÑOL</a>|
+                <a th:href="@{/(lang=en)}">ENGLISH</a>
+                <br/>
+                <span>[[#{plantilla.pie-pagina}]]<a href="https://github.com/kmra00/Portafolio" target="_blank">Portafolio</span>
+
+            </div>
         </footer>
     </body>
 </html>
