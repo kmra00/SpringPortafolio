@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org"/>
-    <head>
-<html>
-    <head>
-        <title>Login</title>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <h1>Login</h1>
-        <form method="POST" th:action='@{/login}'>
-            <label for='username'>Usuario</label>
-            <input type="text" name="username"/>
-            <br/>
-            <label for='password'>Password:</label>
-            <input type="password" name="password"/>
-            <input type="submit" value="Login"/>
-        </form>
-    </body>
-</html>
+<head>
+    <html>
+        <head th:replace="layout/masterPage :: head">
+            <title>Login</title>
+        </head>
+        <body>
+            <header th:replace="layout/masterPage :: header"></header>
+            <section id="actions" class="py-4 mb-4 bg-light">
+                <div class="row">
+
+                </div>
+            </section>
+            <section id="login">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mx-auto">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Login</h4>
+                                </div>
+                                <div class="card-body text-center">
+                                    <form method="POST" th:action='@{/login}'>
+                                        <div class="form-group">
+                                            <label for='username'>Usuario:</label>
+                                            <input type="text" name="username"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for='password'>Password:</label>
+                                            <input type="password" name="password"/>
+                                        </div>
+                                        <input type="submit" value="Login" class="btn btn-primary btn-block"/>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer th:replace="layout/masterPage :: footer"></footer>
+
+
+        </body>
+    </html>

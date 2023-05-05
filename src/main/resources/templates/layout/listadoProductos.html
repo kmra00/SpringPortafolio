@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"/>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                    <section th:fragment="listadoProductos" id="productos">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>[[#{producto.titulo-lista}]]</h4>
+                                        </div>
+                                        <div th:if="${productos != null and !productos.empty}">
+                                            <table class="table table -stryped">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th th:text="#{producto.nombre}">Nombre</th>
+                                                        <th th:text="#{producto.descripcion}">Precio</th>
+                                                        <th th:text="#{producto.marca}">Precio</th>
+                                                        <th th:text="#{producto.stock}">Precio</th>
+                                                        <th th:text="#{producto.precio}">Precio</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr th:each="producto,contador: ${productos}">
+                                                            <td>[[${contador.count}]]</td>
+                                                            <td>[[${producto.nombre}]]</td>
+                                                            <td>[[${producto.descripcion}]]</td>
+                                                            <td>[[${producto.marca}]]</td>
+                                                            <td>[[${producto.stock}]]</td>
+                                                            <td>[[${producto.precio}]]</td>
+                                                            <td>
+
+                                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editar/} + ${producto.idProducto}" class="btn-secondary"/>
+                                                                <i class="fas fa-edit"> [[#{accion.editar}]]</i>
+                                                                </a>
+
+                                                            </td>
+                                                            <!-- //eliminacion mediante query param --> 
+                                                            <td>
+
+                                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar(idProducto=${producto.idProducto})}" class="btn-warning">
+                                                                    <i class="fas fa-trash-alt"></i> [[#{accion.eliminar}]]
+                                                                </a>
+
+
+                                                            </td>
+                                                 
+                                                        </tr>
+                                                    </tbody>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="text-center p-2" th:if="${productos == null or productos.empty}">
+                                            <span th:text="[[#{producto.lista-vacia}]]">lista vacia</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <div class="card text-center bg-danger text-white mb-3">
+                                        <div class="card-body">
+                                            <h3 th:text="#{producto.precioTotal}">Coste total de productos</h3>
+                                            <h4 class="display-4">
+                                                [[${precioTotal}]]
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                </body>
+                </html>

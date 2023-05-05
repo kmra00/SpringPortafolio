@@ -16,44 +16,53 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 public class ControladorProducto {
-    
+
     @Autowired
     private ProductoService productoService;
-    
+
     @GetMapping("/")
-    public String inicio(Model model, @AuthenticationPrincipal User user ){
+    public String inicio(Model model, @AuthenticationPrincipal User user) {
         var productos = productoService.listarProducto();
         log.info("ejecutando el controlador Spring MVC");
-        log.info("usuario que hizo login"+user); 
+        log.info("usuario que hizo login" + user);
         model.addAttribute("productos", productos);
+        var precioTotal=0;
+        for(var p: productos){precioTotal+=p.getPrecio();}
+        model.addAttribute("precioTotal",precioTotal);
+        
         return "index";
     }
     
+
     @GetMapping("/agregar")
-    public String agregar(Producto producto){
+    public String agregar(Producto producto) {
         return "modificarProducto";
     }
-    
+
     @PostMapping("/guardar")
     // validacion de objeto producto
-    public String guardar(@Valid Producto producto, Errors errores){
-        if(errores.hasErrors()){
+    public String guardar(@Valid Producto producto, Errors errores) {
+        if (errores.hasErrors()) {
             return "modificarProducto";
         }
         productoService.guardar(producto);
         return "redirect:/";
     }
+
     // crea instancia de producto y lo setea automatico conjunto con model 
     @GetMapping("/editar/{idProducto}")
-    public String editar(Producto producto, Model model){
+    public String editar(Producto producto, Model model) {
         producto = productoService.encontrarProducto(producto);
         model.addAttribute("producto", producto);
         return "modificarProducto";
     }
+
     //ya reconoce el id de la clase producto
- @GetMapping("/eliminar")
-    public String eliminar(Producto producto){
+    @GetMapping("/eliminar")
+    public String eliminar(Producto producto) {
         productoService.eliminar(producto);
         return "redirect:/";
     }
+
+
 }

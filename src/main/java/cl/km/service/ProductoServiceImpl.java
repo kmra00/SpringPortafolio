@@ -4,6 +4,7 @@ import java.util.List;
 import cl.km.dao.ProductoDao;
 import cl.km.clases.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 //clase tipo service reconoce como contenedor para ser reconocida por el controlador
@@ -38,6 +39,6 @@ public class ProductoServiceImpl implements ProductoService {
         //si no encuentra para no mandar error regresara null
         return productoDao.findById(producto.getIdProducto()).orElse(null);
     }
+    
 
-  
 }

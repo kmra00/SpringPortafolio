@@ -11,34 +11,34 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 /**
- * configuracion de i18n es el listener para cambio de idioma 
+ * configuracion de i18n es el listener para cambio de idioma
  */
 @Configuration
-public class WebConfig  implements WebMvcConfigurer{
-       @Bean
-    public LocaleResolver localeResolver(){
+public class WebConfig implements WebMvcConfigurer {
+
+    @Bean
+    public LocaleResolver localeResolver() {
         var slr = new SessionLocaleResolver();
         slr.setDefaultLocale(new Locale("es"));
         return slr;
     }
-    
+
     @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor(){
+    public LocaleChangeInterceptor localeChangeInterceptor() {
         var lci = new LocaleChangeInterceptor();
         lci.setParamName("lang");
         return lci;
     }
-    
+
     @Override
-    public void addInterceptors(InterceptorRegistry registro){
+    public void addInterceptors(InterceptorRegistry registro) {
         registro.addInterceptor(localeChangeInterceptor());
     }
-    
+
     @Override // la pagina de inicio por default
-    public void addViewControllers(ViewControllerRegistry registro){
+    public void addViewControllers(ViewControllerRegistry registro) {
         registro.addViewController("/").setViewName("index");
         registro.addViewController("/login");
         registro.addViewController("/errores/403").setViewName("/errores/403");
     }
 }
-
