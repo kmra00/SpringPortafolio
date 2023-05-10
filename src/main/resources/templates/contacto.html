@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"/>
+<html>
+    <head>
+        <title>Contacto</title>
+        <meta charset="UTF-8">
+
+            <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+            <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+            <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+            <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+            <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <h2>Soporte Ayuda</h2>
+        <header th:replace="layout/masterPage :: header"></header>
+
+        <div class="container">
+            <form action="submit-form.php" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                    <br>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                            <br>
+                                <label for="message">Message:</label>
+                                <textarea id="message" name="message" required></textarea>
+                                <br>
+                                    <button type="submit">Send</button>
+                                    </form>
+                                    </div>
+
+                                    <footer th:replace="layout/masterPage :: footer"></footer>
+
+
+                                    </body>
+                                    </html>

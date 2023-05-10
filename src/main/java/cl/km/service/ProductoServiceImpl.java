@@ -39,6 +39,11 @@ public class ProductoServiceImpl implements ProductoService {
         //si no encuentra para no mandar error regresara null
         return productoDao.findById(producto.getIdProducto()).orElse(null);
     }
+
+    @Override
+    public List<Producto> obtenerProductosOrdenadosPorPrecioDescendente() {
+        return obtenerProductosOrdenadosPorPrecioDescendente();
+    }
     
 
 }

@@ -23,9 +23,9 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th th:text="#{producto.nombre}">Nombre</th>
-                                                        <th th:text="#{producto.descripcion}">Precio</th>
-                                                        <th th:text="#{producto.marca}">Precio</th>
-                                                        <th th:text="#{producto.stock}">Precio</th>
+                                                        <th th:text="#{producto.descripcion}">desc</th>
+                                                        <th th:text="#{producto.marca}">marca</th>
+                                                        <th th:text="#{producto.stock}">stock</th>
                                                         <th th:text="#{producto.precio}">Precio</th>
                                                         <th></th>
                                                         <th></th>
@@ -40,8 +40,8 @@
                                                             <td>[[${producto.precio}]]</td>
                                                             <td>
 
-                                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editar/} + ${producto.idProducto}" class="btn-secondary"/>
-                                                                <i class="fas fa-edit"> [[#{accion.editar}]]</i>
+                                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editar/} + ${producto.idProducto}" class="btn-secondary">
+                                                                <i class="fas fa-edit"> </i>[[#{accion.editar}]]
                                                                 </a>
 
                                                             </td>
@@ -54,7 +54,7 @@
 
 
                                                             </td>
-                                                 
+
                                                         </tr>
                                                     </tbody>
                                                 </thead>
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-3">
                                     <div class="card text-center bg-danger text-white mb-3">
                                         <div class="card-body">
@@ -78,6 +78,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                     </section>
                 </body>
